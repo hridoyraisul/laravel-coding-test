@@ -5,7 +5,7 @@
         <h1 class="h3 mb-0 text-gray-800">Create Product</h1>
     </div>
     <div id="app">
-        <create-product :variants="{{ $variants }}">Loading</create-product>
+{{--        <create-product :variants="{{ $variants }}">Loading</create-product>--}}
 
         <div class="container">
             <form action="{{url('store-product')}}" method="post" enctype="multipart/form-data">
@@ -19,15 +19,12 @@
                 Varient 1:<br>
                 <input class="form-control" placeholder="Varient 1 Title" type="text" name="v1_title"><br>
                 <input class="form-control" placeholder="Varient 1 Description" type="text" name="v1_description"><br>
-                <input class="form-control" placeholder="Price" type="number" name="v1_price"><br>
                 Varient 2<br>
                 <input class="form-control" placeholder="Varient 2 Title" type="text" name="v2_title"><br>
                 <input class="form-control" placeholder="Varient 2 Description" type="text" name="v2_description"><br>
-                <input class="form-control" placeholder="Price" type="number" name="v2_price"><br>
                 Varient 3<br>
                 <input class="form-control" placeholder="Varient 3 Title" type="text" name="v3_title"><br>
-                <input class="form-control" placeholder="Varient 3 Description" type="text" name="v3_description"><br>
-                <input class="form-control" placeholder="Price" type="number" name="v3_price"><br>
+                <input class="form-control" placeholder="Varient 3 Description" type="text" name="v3_description"><br>e"><br>
                 <button type="submit" class="btn btn-outline-dark">Add Product</button>
             </form>
         </div>

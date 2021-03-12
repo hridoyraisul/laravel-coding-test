@@ -118,12 +118,15 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        $variants = Variant::all();
-        return view('products.edit', compact('variants'));
+        $productInfo = Product::where('id',$id)->first();
+        $productVariantPrice = ProductVariantPrice::where('product_id',$id)->first();
+        $productVariant = ProductVariant::where('product_id',$id)->get();
+        $variant = Variant::where('product_id',$id)->get();
+        return view('products.edit', compact('productInfo','productVariantPrice','productVariant','variant'));
     }
 
     /**
@@ -131,11 +134,21 @@ class ProductController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param \App\Models\Product $product
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $productInfo = Product::where('id',$id)->first();
+        $productInfo->title = $request->title;
+        $productInfo->sku = $request->sku;
+        $productInfo->description = $request->description;
+        $productInfo->save();
+        $varientPrice = ProductVariantPrice::where('product_id',$id)->first();
+        $varientPrice->price = $request->price;
+        $varientPrice->stock = $request->stock;
+        $varientPrice->product_id = $productInfo->id;
+        $varientPrice->save();
+        return redirect()->back();
     }
 
     /**
