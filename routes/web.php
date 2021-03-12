@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::resource('product-variant', 'VariantController');
@@ -27,4 +27,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('blog', 'BlogController');
     Route::resource('blog-category', 'BlogCategoryController');
     Route::post('store-product',[\App\Http\Controllers\ProductController::class,'store']);
+    Route::get('/home',[\App\Http\Controllers\HomeController::class,'index'])->name('home');
 });

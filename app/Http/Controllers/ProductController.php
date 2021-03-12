@@ -18,7 +18,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $allProduct = Product::all();
+        $productVariant = ProductVariant::all();
+        $variantPrice = ProductVariantPrice::all();
+        return view('products.index',compact('allProduct','productVariant','variantPrice'));
     }
 
     /**
@@ -36,7 +39,7 @@ class ProductController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
@@ -96,6 +99,7 @@ class ProductController extends Controller
         $varientPrice->stock = $request->stock;
         $varientPrice->product_id = $productInfo->id;
         $varientPrice->save();
+        return redirect()->back();
     }
 
 
