@@ -8,14 +8,22 @@
 
 
     <div class="card">
-        <form action="" method="get" class="card-header">
+        <form action="{{url('/search')}}" method="post" class="card-header">
             <div class="form-row justify-content-between">
                 <div class="col-md-2">
-                    <input type="text" name="title" placeholder="Product Title" class="form-control">
+                    <input type="text" list="datalistOptions" name="title" placeholder="Product Title" class="form-control">
+                    <datalist id="datalistOptions">
+                        @foreach($allProduct as $prod)
+                        <option value="{{$prod->title}}">
+                        @endforeach
+                    </datalist>
                 </div>
+
                 <div class="col-md-2">
                     <select name="variant" id="" class="form-control">
-
+                        @foreach($productVariant as $var)
+                        <option>{{$var->variant}}</option>
+                        @endforeach
                     </select>
                 </div>
 

@@ -161,4 +161,21 @@ class ProductController extends Controller
     {
         //
     }
+    public function search(Request $request){
+        if ($request->title) {
+            $allProduct = Product::where('title', 'LIKE', '%' . $request->title)->get();
+            $productVariant = ProductVariant::all();
+            $variantPrice = ProductVariantPrice::all();
+        }
+        if ($request->variant){
+            $productVariant = ProductVariant::where('variant','LIKE','%'.$request->title)->get();
+            $allProduct = Product::all();
+        }
+        else{
+            $allProduct = Product::all();
+            $productVariant = ProductVariant::all();
+            $variantPrice = ProductVariantPrice::all();
+        }
+        return view('products.index',compact('allProduct','productVariant','variantPrice'));
+
 }

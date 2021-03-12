@@ -30,4 +30,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/home',[\App\Http\Controllers\HomeController::class,'index'])->name('home');
     Route::get('/edit/{id}',[\App\Http\Controllers\ProductController::class,'edit']);
     Route::put('/edit-product/{id}',[\App\Http\Controllers\ProductController::class,'update']);
+    Route::post('/search',[\App\Http\Controllers\ProductController::class,'search']);
 });
